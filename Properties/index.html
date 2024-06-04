@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de satisfaccion con tu Provincia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Encuesta de satisfaccion con tu Municipio</h1>
+        <form action="submit.html" method="post">
+            <label for="nombre">Nombre (Completo):</label>
+            <input type="text" name="nombre" id="nombre" required>
+
+            <div class="radio-group">
+                <label for="genero">Genero:</label>
+                <label><input type="radio" name="genero" id="masculino" required>Masculino</label>
+                <label><input type="radio" name="genero" id="femenino">Femenino</label>
+                <label><input type="radio" name="genero" id="otro">Otro</label>
+            </div>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="fecha">Fecha de nacimiento:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="municipio">Municipio:</label>
+            <select name="municipio" id="municipio" required>
+                <option value="vacio">--seleccionar--</option>
+                <option value="distrito_nacional">Distrito Nacional</option>
+                <option value="azua">Azua</option>
+                <option value="bahoruco">Bahoruco</option>
+                <option value="barahona">Barahona</option>
+                <option value="dajabon">Dajabón</option>
+                <option value="duarte">Duarte</option>
+                <option value="elias_pina">Elías Piña</option>
+                <option value="el_seibo">El Seibo</option>
+                <option value="espaillat">Espaillat</option>
+                <option value="hato_mayor">Hato Mayor</option>
+                <option value="hermanas_mirabal">Hermanas Mirabal</option>
+                <option value="independencia">Independencia</option>
+                <option value="la_altagracia">La Altagracia</option>
+                <option value="la_romana">La Romana</option>
+                <option value="la_vega">La Vega</option>
+                <option value="maria_trinidad_sanchez">María Trinidad Sánchez</option>
+                <option value="monte_cristi">Monte Cristi</option>
+                <option value="monte_plata">Monte Plata</option>
+                <option value="pedernales">Pedernales</option>
+                <option value="peravia">Peravia</option>
+                <option value="puerto_plata">Puerto Plata</option>
+                <option value="samana">Samaná</option>
+                <option value="san_cristobal">San Cristóbal</option>
+                <option value="san_juan">San Juan</option>
+                <option value="san_pedro_de_macoris">San Pedro de Macorís</option>
+                <option value="sanchez_ramirez">Sánchez Ramírez</option>
+                <option value="santiago">Santiago</option>
+                <option value="santiago_rodriguez">Santiago Rodríguez</option>
+                <option value="santo_domingo">Santo Domingo</option>
+                <option value="valverde">Valverde</option>
+            </select>
+
+            <label for="edad">Edad:</label>
+            <select name="edad" id="edad" required>
+                <option value="vacio">--seleccionar--</option>
+                <option value="adolescente">13 a 17 años</option>
+                <option value="adulto">18 a 39 años</option>
+                <option value="adulto_mayor">40 a 65 años</option>
+                <option value="envejeciente">66 años en adelante</option>
+                <option value="norep">Prefiero no responder</option>
+            </select>
+
+            <label for="satisfaccion">Cosas que te gustan de tu Municipio:</label>
+            <div class="checkbox-group">
+                <label for="paisajes"><input type="checkbox" name="gustos" id="paisajes" value="paisajes"> Paisajes</label>
+                <label for="cultura"><input type="checkbox" name="gustos" id="cultura" value="cultura"> Cultura</label>
+                <label for="gente"><input type="checkbox" name="gustos" id="gente" value="gente"> Gente</label>
+                <label for="clima"><input type="checkbox" name="gustos" id="clima" value="clima"> Clima</label>
+                <label for="comida"><input type="checkbox" name="gustos" id="comida" value="comida"> Comida</label>
+            </div>
+
+            <label for="satisfaccion">Cosas que no te gustan de tu Municipio:</label>
+            <div class="checkbox-group">
+                <label for="trafico"><input type="checkbox" name="no_gustos" id="trafico" value="trafico"> Tráfico</label>
+                <label for="contaminacion"><input type="checkbox" name="no_gustos" id="contaminacion" value="contaminacion"> Contaminación</label>
+                <label for="seguridad"><input type="checkbox" name="no_gustos" id="seguridad" value="seguridad"> Seguridad</label>
+                <label for="infraestructura"><input type="checkbox" name="no_gustos" id="infraestructura" value="infraestructura"> Infraestructura</label>
+                <label for="servicios"><input type="checkbox" name="no_gustos" id="servicios" value="servicios"> Servicios Públicos</label>
+            </div>
+
+            <label for="image_button">Mapa politico de Republica Dominicana:</label>
+            <input type="image" id="image" src="multimedia/imagen.png" alt="image_button" width="600" size="40">
+
+            <label for="audio">Audio ayuda:</label>
+            <audio controls>
+                <source src="multimedia/audio.mp3" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+
+            <label for="video">Video sobre la Republica Dominicana:</label>
+            <video controls width="100%">
+                <source src="multimedia/video.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <label for="texto">Escribe tu opinion de la encuesta:</label>
+            <textarea name="texto" id="text" cols="30" rows="10"></textarea>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
