@@ -27,16 +27,13 @@ namespace SeleniumFormFilling
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
                 // Localizar y rellenar los elementos del formulario
-                RellenarFormulario(wait, driver);
+                string nombreUsuario = RellenarFormulario(wait, driver).Replace(" ", "_");
 
                 // Enviar el formulario
                 EnviarFormulario(wait, driver);
 
-                // Obtener el nombre del usuario
-                string nombreUsuario = ObtenerNombreUsuario(driver).Replace(" ", "_");
-
                 // Guardar los datos en un archivo de texto en la ubicación especificada
-                GuardarDatos(nombreUsuario, driver);
+                GuardarDatos(nombreUsuario);
 
                 // Verificar la redirección a submit.html
                 wait.Until(ExpectedConditions.UrlContains("submit.html"));
@@ -55,15 +52,21 @@ namespace SeleniumFormFilling
                 // Cerrar el navegador
                 driver.Quit();
             }
+
+            // Mantener la consola abierta
+            Console.WriteLine("Presione cualquier tecla para cerrar...");
+            Console.ReadKey();
         }
 
-        static void RellenarFormulario(WebDriverWait wait, IWebDriver driver)
+        static string RellenarFormulario(WebDriverWait wait, IWebDriver driver)
         {
+            string nombreUsuario = string.Empty;
             try
             {
                 Console.WriteLine("Localizando y rellenando el campo de nombre...");
                 var nombreElement = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("nombre")));
                 nombreElement.SendKeys("Juan Pérez");
+                nombreUsuario = nombreElement.GetAttribute("value");
 
                 Console.WriteLine("Localizando y seleccionando el género masculino...");
                 var masculinoElement = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("masculino")));
@@ -108,13 +111,14 @@ namespace SeleniumFormFilling
             catch (StaleElementReferenceException ex)
             {
                 Console.WriteLine($"StaleElementReferenceException capturada. Reintentando rellenar el formulario... {ex.Message}");
-                RellenarFormulario(wait, driver);
+                return RellenarFormulario(wait, driver);
             }
             catch (WebDriverTimeoutException ex)
             {
                 Console.WriteLine($"WebDriverTimeoutException capturada. Reintentando rellenar el formulario... {ex.Message}");
-                RellenarFormulario(wait, driver);
+                return RellenarFormulario(wait, driver);
             }
+            return nombreUsuario;
         }
 
         static void EnviarFormulario(WebDriverWait wait, IWebDriver driver)
@@ -137,22 +141,7 @@ namespace SeleniumFormFilling
             }
         }
 
-        static string ObtenerNombreUsuario(IWebDriver driver)
-        {
-            try
-            {
-                Console.WriteLine("Obteniendo el nombre del usuario...");
-                var nombreElement = driver.FindElement(By.Id("nombre"));
-                return nombreElement.GetAttribute("value");
-            }
-            catch (StaleElementReferenceException ex)
-            {
-                Console.WriteLine($"StaleElementReferenceException capturada al obtener el nombre. Reintentando... {ex.Message}");
-                return ObtenerNombreUsuario(driver);
-            }
-        }
-
-        static void GuardarDatos(string nombreUsuario, IWebDriver driver)
+        static void GuardarDatos(string nombreUsuario)
         {
             string folderPath = @"C:\Users\josee\source\repos\FormularioSelenium\Formularios Completos";
             Directory.CreateDirectory(folderPath); // Crear la carpeta si no existe
@@ -162,10 +151,9 @@ namespace SeleniumFormFilling
             try
             {
                 Console.WriteLine("Guardando los datos en el archivo...");
-                var nombreElement = driver.FindElement(By.Id("nombre"));
                 var formData = new string[]
                 {
-                    $"Nombre: {nombreElement.GetAttribute("value")}",
+                    $"Nombre: Juan Pérez",
                     "Género: Masculino",
                     "Email: juan.perez@example.com",
                     "Fecha de Nacimiento: 1990-01-01",
@@ -182,6 +170,7 @@ namespace SeleniumFormFilling
                 if (File.Exists(filePath))
                 {
                     Console.WriteLine($"Formulario enviado y datos guardados en {filePath}");
+                    MostrarMensaje($"Formulario enviado y datos guardados en {filePath}");
                 }
                 else
                 {
@@ -191,8 +180,19 @@ namespace SeleniumFormFilling
             catch (StaleElementReferenceException ex)
             {
                 Console.WriteLine($"StaleElementReferenceException capturada al guardar datos. Reintentando... {ex.Message}");
-                GuardarDatos(nombreUsuario, driver);
+                GuardarDatos(nombreUsuario);
             }
+        }
+
+        static void MostrarMensaje(string mensaje)
+        {
+            // Crear un proceso para mostrar un mensaje
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = $"/c echo {mensaje} && pause",
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal
+            });
         }
     }
 }

@@ -1,0 +1,9 @@
+Nombre: Juan Pérez
+Género: Masculino
+Email: juan.perez@example.com
+Fecha de Nacimiento: 1990-01-01
+Municipio: Santiago
+Edad: Adulto
+Gustos: Paisajes, Gente
+No Gustos: Tráfico, Contaminación
+Opinión: Muy satisfecho con el municipio en general.

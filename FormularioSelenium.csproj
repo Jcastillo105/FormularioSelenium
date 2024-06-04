@@ -78,12 +78,12 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets'))" />
     <Error Condition="!Exists('packages\Selenium.WebDriver.IEDriver.4.14.0\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.IEDriver.4.14.0\build\Selenium.WebDriver.IEDriver.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.MSEdgeDriver.123.0.2420.65\build\Selenium.WebDriver.MSEdgeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.MSEdgeDriver.123.0.2420.65\build\Selenium.WebDriver.MSEdgeDriver.targets'))" />
     <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.125.0.6422.14100\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.125.0.6422.14100\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('packages\Selenium.WebDriver.MSEdgeDriver.win32.125.0.2535.51\build\Selenium.WebDriver.MSEdgeDriver.win32.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.MSEdgeDriver.win32.125.0.2535.51\build\Selenium.WebDriver.MSEdgeDriver.win32.targets'))" />
+    <Error Condition="!Exists('packages\Selenium.WebDriver.MSEdgeDriver.125.0.2535.79\build\Selenium.WebDriver.MSEdgeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.MSEdgeDriver.125.0.2535.79\build\Selenium.WebDriver.MSEdgeDriver.targets'))" />
   </Target>
   <Import Project="packages\Selenium.WebDriver.IEDriver.4.14.0\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('packages\Selenium.WebDriver.IEDriver.4.14.0\build\Selenium.WebDriver.IEDriver.targets')" />
-  <Import Project="packages\Selenium.WebDriver.MSEdgeDriver.123.0.2420.65\build\Selenium.WebDriver.MSEdgeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.MSEdgeDriver.123.0.2420.65\build\Selenium.WebDriver.MSEdgeDriver.targets')" />
   <Import Project="packages\Selenium.WebDriver.ChromeDriver.125.0.6422.14100\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.125.0.6422.14100\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="packages\Selenium.WebDriver.MSEdgeDriver.win32.125.0.2535.51\build\Selenium.WebDriver.MSEdgeDriver.win32.targets" Condition="Exists('packages\Selenium.WebDriver.MSEdgeDriver.win32.125.0.2535.51\build\Selenium.WebDriver.MSEdgeDriver.win32.targets')" />
+  <Import Project="packages\Selenium.WebDriver.MSEdgeDriver.125.0.2535.79\build\Selenium.WebDriver.MSEdgeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.MSEdgeDriver.125.0.2535.79\build\Selenium.WebDriver.MSEdgeDriver.targets')" />
 </Project>
