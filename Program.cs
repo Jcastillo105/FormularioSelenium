@@ -11,15 +11,22 @@ namespace SeleniumFormFilling
     {
         static void Main(string[] args)
         {
+            // Obtener la ruta base del directorio bin/Debug y subir al directorio raíz del proyecto
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(baseDirectory).Parent.Parent.FullName;
+
+            // Ruta del archivo HTML
+            string htmlFilePath = Path.Combine(projectDirectory, "Properties", "index.html");
+
             // Configurar ChromeDriver especificando la ruta del ejecutable
-            var chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
+            var chromeDriverService = ChromeDriverService.CreateDefaultService(baseDirectory);
             var chromeOptions = new ChromeOptions();
             IWebDriver driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
             try
             {
                 // Navegar a la página del formulario
-                string url = "file:///C:/Users/josee/source/repos/FormularioSelenium/Properties/index.html";
+                string url = $"file:///{htmlFilePath.Replace("\\", "/")}";
                 driver.Navigate().GoToUrl(url);
                 Console.WriteLine($"Navegando a {url}");
 
@@ -33,7 +40,7 @@ namespace SeleniumFormFilling
                 EnviarFormulario(wait, driver);
 
                 // Guardar los datos en un archivo de texto en la ubicación especificada
-                GuardarDatos(nombreUsuario);
+                GuardarDatos(nombreUsuario, projectDirectory);
 
                 // Verificar la redirección a submit.html
                 wait.Until(ExpectedConditions.UrlContains("submit.html"));
@@ -141,9 +148,9 @@ namespace SeleniumFormFilling
             }
         }
 
-        static void GuardarDatos(string nombreUsuario)
+        static void GuardarDatos(string nombreUsuario, string projectDirectory)
         {
-            string folderPath = @"C:\Users\josee\source\repos\FormularioSelenium\Formularios Completos";
+            string folderPath = Path.Combine(projectDirectory, "Formularios Completos");
             Directory.CreateDirectory(folderPath); // Crear la carpeta si no existe
 
             string filePath = Path.Combine(folderPath, $"{nombreUsuario}.txt");
@@ -180,7 +187,7 @@ namespace SeleniumFormFilling
             catch (StaleElementReferenceException ex)
             {
                 Console.WriteLine($"StaleElementReferenceException capturada al guardar datos. Reintentando... {ex.Message}");
-                GuardarDatos(nombreUsuario);
+                GuardarDatos(nombreUsuario, projectDirectory);
             }
         }
 
